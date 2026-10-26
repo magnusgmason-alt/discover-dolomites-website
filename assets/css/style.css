@@ -251,3 +251,13 @@ h3 { font-size: 1.6rem; font-weight: 800; }
   .unesco-media img { -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%); mask-image: linear-gradient(to bottom, #000 50%, transparent 100%); }
   .unesco-inner { margin-top: -64px; }
 }
+
+/* Faded photo behind the two book sections */
+.book-bg { position: relative; overflow: hidden; isolation: isolate; }
+.book-bg::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--book-bg) center / cover no-repeat; opacity: 0.22; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 28%, #000 72%, transparent 100%); }
+.book-bg-summer { --book-bg: url("../img/hiker-green-slope-1800.jpg"); }
+.book-bg-winter { --book-bg: url("../img/winter-alpenglow-1800.jpg"); }
+@media (max-width: 760px) {
+  .book-bg-summer { --book-bg: url("../img/hiker-green-slope-800.jpg"); }
+  .book-bg-winter { --book-bg: url("../img/winter-alpenglow-800.jpg"); }
+}
