@@ -62,7 +62,7 @@
   // Until then the form does NOT collect addresses and says so honestly.
   var form = document.getElementById("signup");
   var msg = document.getElementById("formMsg");
-  form.addEventListener("submit", function (e) {
+  if (form) form.addEventListener("submit", function (e) {
     e.preventDefault();
     var email = form.elements.email.value.trim();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
