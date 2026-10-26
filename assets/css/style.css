@@ -232,3 +232,22 @@ h3 { font-size: 1.6rem; font-weight: 800; }
   .check-items { grid-template-columns: 1fr; }
   .hero-regions { letter-spacing: 0.08em; line-height: 1.8; }
 }
+
+/* UNESCO World Heritage section */
+.unesco { position: relative; background: var(--ink); color: var(--white); overflow: hidden; padding: clamp(96px, 12vw, 170px) 0; }
+.unesco-media { position: absolute; top: 0; right: 0; bottom: 0; width: 62%; }
+.unesco-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 48%); mask-image: linear-gradient(to right, transparent 0%, #000 48%); }
+.unesco-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 19, 23, 0.15), rgba(14, 19, 23, 0.4)); }
+.unesco-inner { position: relative; }
+.unesco-inner > * { max-width: 540px; }
+.unesco-mark { font-size: 0.95rem; font-weight: 800; letter-spacing: 0.42em; margin-bottom: 14px; }
+.unesco h2 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); font-weight: 800; letter-spacing: -0.04em; line-height: 0.98; margin-bottom: 14px; }
+.unesco-sub { font-family: var(--serif); font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.5rem); margin: 0; }
+.unesco .rule { display: block; width: 72px; height: 5px; background: var(--red); margin: 26px 0 22px; }
+.unesco .lead { color: rgba(255, 255, 255, 0.88); }
+@media (max-width: 760px) {
+  .unesco { padding: 0 0 72px; }
+  .unesco-media { position: relative; width: 100%; height: 72vw; min-height: 280px; }
+  .unesco-media img { -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent 100%); mask-image: linear-gradient(to bottom, #000 50%, transparent 100%); }
+  .unesco-inner { margin-top: -64px; }
+}
