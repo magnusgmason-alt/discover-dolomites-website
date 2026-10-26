@@ -261,3 +261,11 @@ h3 { font-size: 1.6rem; font-weight: 800; }
   .book-bg-summer { --book-bg: url("../img/hiker-green-slope-800.jpg"); }
   .book-bg-winter { --book-bg: url("../img/winter-alpenglow-800.jpg"); }
 }
+
+/* Journal cards link to articles (whole card clickable) */
+.journal-card { position: relative; }
+.journal-card h3 a.card-stretch { color: inherit; text-decoration: none; }
+.journal-card h3 a.card-stretch::after { content: ""; position: absolute; inset: 0; }
+.journal-card:hover h3 a.card-stretch { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+.journal-card h3 a.card-stretch:focus-visible { outline: none; }
+.journal-card:focus-within { outline: 3px solid var(--red); outline-offset: 3px; }
