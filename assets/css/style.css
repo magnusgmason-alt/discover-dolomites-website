@@ -269,3 +269,7 @@ h3 { font-size: 1.6rem; font-weight: 800; }
 .journal-card:hover h3 a.card-stretch { text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
 .journal-card h3 a.card-stretch:focus-visible { outline: none; }
 .journal-card:focus-within { outline: 3px solid var(--red); outline-offset: 3px; }
+
+/* Header nav: keep labels on one line between tablet and desktop */
+.nav > a, .dropdown-btn { white-space: nowrap; }
+@media (min-width: 961px) and (max-width: 1180px) { .nav { gap: 14px; font-size: 0.76rem; } }
