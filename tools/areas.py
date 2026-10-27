@@ -1,0 +1,16 @@
+AREAS = [
+ ('val-gardena-alpe-di-siusi','Val Gardena · Alpe di Siusi','Seceda, Ciampinoi, Dantercepies and the Seiser Alm',(11.56,46.52,11.82,46.62),200),
+ ('alta-badia','Alta Badia','Corvara, Colfosco, La Villa and San Cassiano',(11.82,46.52,11.98,46.60),210),
+ ('arabba-marmolada','Arabba · Marmolada','Porta Vescovo, Passo Pordoi and the Marmolada glacier',(11.80,46.42,11.96,46.53),185),
+ ('val-di-fassa-carezza','Val di Fassa · Carezza','Canazei, Campitello, Belvedere, Col Rodella and Carezza',(11.55,46.39,11.82,46.50),200),
+ ('cortina-d-ampezzo','Cortina d’Ampezzo','Tofane, Cinque Torri, Lagazuoi and Faloria-Cristallo',(12.00,46.50,12.20,46.58),300),
+ ('kronplatz','Kronplatz · Plan de Corones','One mountain, lifts on every side',(11.89,46.70,12.02,46.78),160),
+ ('3-zinnen-dolomites','3 Zinnen Dolomites','Monte Elmo, Croda Rossa and Sesto',(12.28,46.65,12.42,46.73),160),
+ ('val-di-fiemme-obereggen','Val di Fiemme · Obereggen','Obereggen, Pampeago, Predazzo and Cermis',(11.44,46.25,11.62,46.40),30),
+ ('san-martino-passo-rolle','San Martino di Castrozza · Passo Rolle','Tognola, Ces, Colverde and Passo Rolle',(11.76,46.24,11.86,46.32),70),
+ ('alpe-lusia-san-pellegrino','Alpe Lusia · San Pellegrino','Moena, Alpe Lusia, Passo San Pellegrino and Falcade',(11.66,46.33,11.92,46.40),20),
+ ('civetta','Civetta','Alleghe, Pescul, Selva di Cadore and Palafavera',(11.98,46.36,12.12,46.46),280),
+ ('plose','Plose · Bressanone','The Plose, Bressanone’s own mountain',(11.68,46.67,11.75,46.705),140),
+ ('gitschberg-jochtal','Gitschberg Jochtal','Maranza, Valles and Rio Pusteria',(11.59,46.80,11.69,46.86),170),
+ ('sella-ronda','Sella Ronda','The classic ski circuit around the Sella massif',(11.70,46.46,11.94,46.60),200),
+]
