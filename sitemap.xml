@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://discoverdolomites.org/</loc>
-    <lastmod>2026-10-27</lastmod>
-  </url>
-  <url>
-    <loc>https://discoverdolomites.org/journal/best-time-to-visit-the-dolomites/</loc>
-    <lastmod>2026-10-27</lastmod>
-  </url>
-  <url>
-    <loc>https://discoverdolomites.org/journal/where-to-stay-in-the-dolomites/</loc>
-    <lastmod>2026-10-27</lastmod>
-  </url>
-  <url>
-    <loc>https://discoverdolomites.org/journal/dolomites-what-to-book-in-advance/</loc>
-    <lastmod>2026-10-27</lastmod>
-  </url>
+  <url><loc>https://discoverdolomites.org/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/best-time-to-visit-the-dolomites/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/where-to-stay-in-the-dolomites/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/dolomites-what-to-book-in-advance/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/skiing-in-the-dolomites-with-kids/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/best-family-ski-areas-in-the-dolomites/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/dolomites-skiing-for-beginners/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/snowboarding-in-the-dolomites/</loc><lastmod>2026-10-27</lastmod></url>
+  <url><loc>https://discoverdolomites.org/journal/dolomites-ski-rules-helmets-insurance-safety/</loc><lastmod>2026-10-27</lastmod></url>
 </urlset>

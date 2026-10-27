@@ -48,3 +48,48 @@
   .related .journal-grid { grid-template-columns: 1fr; }
   .article-body { font-size: 1.02rem; }
 }
+
+/* In-article photos: magazine style. Images melt into the page and the caption sits on the faded, blurred edge. */
+.article-body::after { content: ""; display: table; clear: both; }
+.article-body h2 { clear: both; }
+.article-body figure { position: relative; margin: 3.4rem calc(50% - min(48vw, 580px)); }
+.article-body figure img { display: block; width: 100%; height: auto; }
+.article-body figcaption { position: absolute; z-index: 1; display: flex; flex-direction: column; justify-content: center; gap: 10px;
+  font: italic 500 1.05rem/1.5 var(--serif); color: #2c3439; text-wrap: pretty; }
+.article-body figcaption::before { content: ""; position: absolute; inset: 0; z-index: -1;
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.fig-place { font: 700 0.7rem/1.2 var(--sans); font-style: normal; letter-spacing: 0.2em; text-transform: uppercase; color: var(--red); }
+.fig-place::after { content: ""; display: block; width: 40px; height: 3px; background: var(--red); margin-top: 12px; }
+
+/* Wide photos: fade sideways into the page, caption on the faded side */
+.article-body figure.wide img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 88%, transparent 100%), linear-gradient(90deg, transparent 0, #000 9%); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 88%, transparent 100%), linear-gradient(90deg, transparent 0, #000 9%); mask-composite: intersect; }
+.article-body figure.wide.flip img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 88%, transparent 100%), linear-gradient(270deg, transparent 0, #000 9%); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 88%, transparent 100%), linear-gradient(270deg, transparent 0, #000 9%); mask-composite: intersect; }
+.article-body figure.wide figcaption { top: 0; bottom: 0; right: 0; width: 46%; padding: 0 clamp(20px, 4vw, 56px) 0 clamp(70px, 10vw, 150px);
+  background: linear-gradient(90deg, rgba(247, 245, 241, 0) 0%, rgba(247, 245, 241, 0.72) 42%, var(--paper) 78%); }
+.article-body figure.wide figcaption::before { -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+.article-body figure.wide.flip figcaption { right: auto; left: 0; padding: 0 clamp(70px, 10vw, 150px) 0 clamp(20px, 4vw, 56px);
+  background: linear-gradient(270deg, rgba(247, 245, 241, 0) 0%, rgba(247, 245, 241, 0.72) 42%, var(--paper) 78%); }
+.article-body figure.wide.flip figcaption::before { -webkit-mask-image: linear-gradient(270deg, transparent, #000 45%); mask-image: linear-gradient(270deg, transparent, #000 45%); }
+
+/* Portrait photos: image on one side, fading sideways into the caption */
+.article-body figure.portrait { margin: 3.4rem calc(50% - min(48vw, 500px)); }
+.article-body figure.portrait img { width: 60%; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 88%, transparent 100%), linear-gradient(90deg, transparent 0, #000 8%, #000 55%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 88%, transparent 100%), linear-gradient(90deg, transparent 0, #000 8%, #000 55%, transparent 100%); mask-composite: intersect; }
+.article-body figure.portrait.flip img { margin-left: auto; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 88%, transparent 100%), linear-gradient(270deg, transparent 0, #000 8%, #000 55%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 9%, #000 88%, transparent 100%), linear-gradient(270deg, transparent 0, #000 8%, #000 55%, transparent 100%); mask-composite: intersect; }
+.article-body figure.portrait figcaption { top: 0; bottom: 0; right: 0; width: 52%; padding: 0 clamp(20px, 3vw, 40px) 0 clamp(60px, 8vw, 110px);
+  background: linear-gradient(90deg, rgba(247, 245, 241, 0) 0%, rgba(247, 245, 241, 0.7) 35%, var(--paper) 70%); }
+.article-body figure.portrait figcaption::before { -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%); mask-image: linear-gradient(90deg, transparent, #000 40%); }
+.article-body figure.portrait.flip figcaption { right: auto; left: 0; padding: 0 clamp(60px, 8vw, 110px) 0 clamp(20px, 3vw, 40px);
+  background: linear-gradient(270deg, rgba(247, 245, 241, 0) 0%, rgba(247, 245, 241, 0.7) 35%, var(--paper) 70%); }
+.article-body figure.portrait.flip figcaption::before { -webkit-mask-image: linear-gradient(270deg, transparent, #000 40%); mask-image: linear-gradient(270deg, transparent, #000 40%); }
+
+@media (max-width: 900px) {
+  .article-body figure, .article-body figure.portrait { margin: 2.6rem -20px; }
+  .article-body figure.portrait img, .article-body figure.portrait.flip img { width: 100%; max-height: 80svh; object-fit: cover; margin: 0; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 70%, transparent 100%), linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 72%, transparent 100%), linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%); mask-composite: intersect; }
+  .article-body figure.portrait figcaption, .article-body figure.portrait.flip figcaption { position: relative; top: auto; width: auto; margin-top: -110px; padding: 90px 20px 0;
+    background: linear-gradient(180deg, rgba(247, 245, 241, 0) 0%, rgba(247, 245, 241, 0.8) 50%, var(--paper) 85%); }
+  .article-body figure.portrait figcaption::before, .article-body figure.portrait.flip figcaption::before { -webkit-mask-image: linear-gradient(180deg, transparent, #000 55%); mask-image: linear-gradient(180deg, transparent, #000 55%); }
+  .article-body figure.wide figcaption, .article-body figure.wide.flip figcaption { position: relative; width: auto; margin-top: -90px; padding: 90px 20px 0;
+    background: linear-gradient(180deg, rgba(247, 245, 241, 0) 0%, rgba(247, 245, 241, 0.8) 50%, var(--paper) 85%); }
+  .article-body figure.wide figcaption::before, .article-body figure.wide.flip figcaption::before { -webkit-mask-image: linear-gradient(180deg, transparent, #000 55%); mask-image: linear-gradient(180deg, transparent, #000 55%); }
+  .article-body figure.wide img, .article-body figure.wide.flip img { -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 8%), linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(180deg, transparent 0, #000 8%), linear-gradient(90deg, transparent 0, #000 13%, #000 87%, transparent 100%); mask-composite: intersect; }
+}
