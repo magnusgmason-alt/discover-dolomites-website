@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Interactive Map of the Dolomites: Peaks, Towns &amp; Regions | Discover Dolomites</title>
+  <meta name="description" content="Explore the Dolomites on an interactive relief map: zoom in, hover over the great peaks from the Marmolada to the Tre Cime, and see heights, photos and what makes each one special.">
+  <link rel="canonical" href="https://discoverdolomites.org/map/">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://discoverdolomites.org/map/"><meta property="og:site_name" content="Discover Dolomites">
+  <meta property="og:title" content="Interactive map of the Dolomites"><meta property="og:description" content="Zoom in and explore the great peaks of the Dolomites.">
+  <meta property="og:image" content="https://discoverdolomites.org/assets/img/share-map.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#0e1317">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,500&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css?v=5">
+  <style>
+  .imap-page{background:var(--paper);padding:calc(var(--header-h) + 36px) 0 64px}
+  .imap-head{text-align:center;max-width:760px;margin:0 auto 24px;padding:0 20px}
+  .imap-head h1{font-size:clamp(2rem,4.6vw,3.4rem);letter-spacing:-.035em;margin:6px 0 10px}
+  .imap-head p{color:var(--muted);margin:0}
+  #imap{height:min(78svh,820px);max-width:1280px;margin:0 auto;border-radius:4px;background:#e9e4da;box-shadow:0 24px 60px rgba(14,19,23,.16)}
+  @media (max-width:760px){#imap{border-radius:0;height:72svh}}
+  .leaflet-container{font-family:var(--sans)}
+  .pk-icon{width:22px;height:22px}
+  .pk-icon svg{display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));transition:transform .15s}
+  .pk-icon:hover svg,.pk-icon.on svg{transform:scale(1.25)}
+  .pk-lbl{background:none;border:0;box-shadow:none;padding:0;font:700 12.5px var(--sans);color:#16191c;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 2px #fff}
+  .pk-lbl:before{display:none}
+  .tw-lbl{background:none;border:0;box-shadow:none;padding:0;font:600 11px var(--sans);color:#3b4650;text-shadow:0 0 3px #fff,0 0 3px #fff}
+  .tw-lbl:before{display:none}
+  .pcard{width:280px;border-radius:6px;overflow:hidden;background:#fff;box-shadow:0 18px 48px rgba(0,0,0,.28)}
+  .leaflet-tooltip.card-tt{padding:0;border:0;background:none;box-shadow:none;white-space:normal}
+  .leaflet-tooltip.card-tt:before{display:none}
+  .pcard .ph{height:150px;background:#0e1317 center/cover no-repeat;position:relative}
+  .pcard .ph.none{background:linear-gradient(135deg,#2a3640,#0e1317)}
+  .pcard .ph span{position:absolute;left:14px;bottom:10px;font:700 10.5px var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .pcard .bd{padding:14px 16px 16px}
+  .pcard h3{margin:0;font:800 1.15rem var(--sans);letter-spacing:-.02em;color:#16191c}
+  .pcard .el{font:700 .8rem var(--sans);color:var(--red);margin:3px 0 8px}
+  .pcard p{margin:0;font:.84rem/1.5 var(--sans);color:#3b4650}
+  .imap-note{text-align:center;color:var(--muted);font-size:.85rem;margin:14px auto 0;max-width:760px;padding:0 20px}
+  .imap-legend{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin:18px 0 0;font:600 .85rem var(--sans);color:#3b4650}
+  .imap-legend span{display:inline-flex;align-items:center;gap:8px}
+  </style>
+</head>
+<body>
+
+<header class="site-header solid" id="header">
+  <div class="container header-inner">
+    <a class="logo" href="/" aria-label="Discover Dolomites, home">Discover<b>Dolomites</b><i>.</i></a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Menu"><span></span><span></span></button>
+    <nav class="nav" id="nav" aria-label="Main">
+      <a href="/#guides">All guides</a>
+      <div class="dropdown">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Regions <span aria-hidden="true">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="/map/">All regions</a>
+          <a href="/#map">Cortina d’Ampezzo</a>
+          <a href="/#map">Val Gardena</a>
+          <a href="/#map">Alta Badia</a>
+          <a href="/#map">Alpe di Siusi</a>
+          <a href="/#map">Tre Cime</a>
+          <a href="/#map">Val di Fassa</a>
+        </div>
+      </div>
+      <a href="/summer/">Summer</a>
+      <a href="/winter/">Winter</a>
+      <a href="/#peaks">The Rock</a>
+      <a href="/#history">History</a>
+      <a href="/journal/">Journal</a>
+      <a href="/#checklist">Free checklist</a>
+      <div class="dropdown lang">
+        <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">EN <span aria-hidden="true">▾</span></button>
+        <div class="dropdown-menu">
+          <a href="#" aria-current="true">English</a>
+          <span class="soon">Italiano · soon</span>
+          <span class="soon">Deutsch · soon</span>
+          <span class="soon">Español · soon</span>
+          <span class="soon">中文 · soon</span>
+          <span class="soon">日本語 · soon</span>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="imap-page">
+  <div class="imap-head">
+    <p class="eyebrow">The range</p>
+    <h1>Explore the Dolomites</h1>
+    <p>Zoom in, drag around and hover over a peak to see what makes it special. On a phone, tap a peak.</p>
+  </div>
+  <div id="imap" role="application" aria-label="Interactive relief map of the Dolomites"></div>
+  <div class="imap-legend"><span><svg width="16" height="16" viewBox="0 0 22 22"><path d="M2 19 L11 3 L20 19 Z" fill="#c8202f" stroke="#fff" stroke-width="2"/></svg>Peak</span><span><svg width="12" height="12"><circle cx="6" cy="6" r="4.5" fill="#fff" stroke="#16191c" stroke-width="2"/></svg>Town</span></div>
+  <p class="imap-note">Shaded relief from Mapzen / AWS Terrain Tiles. Positions and heights are approximate. Not for navigation.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="logo" href="/">Discover<b>Dolomites</b><i>.</i></a>
+    <nav aria-label="Footer">
+      <a href="/#guides">All guides</a>
+      <a href="/summer/">Summer</a>
+      <a href="/winter/">Winter</a>
+      <a href="/journal/">Journal</a>
+      <a href="/#checklist">Free checklist</a>
+    </nav>
+    <p>© <span id="year">2026</span> Discover Dolomites. Independent travel guides to the Dolomites and the mountains of northern Italy.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+(function(){
+  var W=4096,H=3328, PEAKS=[{"n": "Marmolada", "x": 1750.2, "y": 2062.2, "e": 3343, "g": "Marmolada group", "b": "The highest peak in the Dolomites, with the range’s last large glacier on its northern side. Cable cars from Malga Ciapela reach Punta Rocca.", "p": "marmolada-lifts"}, {"n": "Antelao", "x": 2947.7, "y": 1989.5, "e": 3264, "g": "Cadore", "b": "The ‘King of the Dolomites’ towers above the Boite valley south of Cortina, the second-highest summit in the range.", "p": null}, {"n": "Tofana di Mezzo", "x": 2385.5, "y": 1628.6, "e": 3244, "g": "Tofane", "b": "Three huge summits above Cortina. The Freccia nel Cielo cable car climbs almost to the top of Tofana di Mezzo.", "p": null}, {"n": "Monte Cristallo", "x": 2752.5, "y": 1446.4, "e": 3221, "g": "Cristallo", "b": "A jagged massif north-east of Cortina, crossed by First World War paths and the famous Ivano Dibona via ferrata.", "p": null}, {"n": "Civetta", "x": 2338.9, "y": 2292.4, "e": 3220, "g": "Civetta", "b": "Its north-west face, a wall more than a kilometre high, rises straight above Lake Alleghe: one of the great walls of the Alps.", "p": null}, {"n": "Sorapiss", "x": 2816.6, "y": 1713.3, "e": 3205, "g": "Sorapiss", "b": "Hides the turquoise Lago di Sorapis, one of the most popular hikes from Passo Tre Croci.", "p": null}, {"n": "Cimon della Pala", "x": 1721.4, "y": 2714.2, "e": 3184, "g": "Pale di San Martino", "b": "The ‘Matterhorn of the Dolomites’ above Passo Rolle and San Martino di Castrozza.", "p": null}, {"n": "Sassolungo", "x": 1417.0, "y": 1697.6, "e": 3181, "g": "Sassolungo", "b": "The unmistakable wall at the head of Val Gardena, circled by a classic hut-to-hut walk and by the Sella Ronda in winter.", "p": "sassolungo-slopes"}, {"n": "Pelmo", "x": 2580.7, "y": 2089.7, "e": 3168, "g": "Pelmo", "b": "A giant rock throne standing alone above Val di Zoldo. Dinosaur footprints were found on a boulder below it.", "p": null}, {"n": "Piz Boè", "x": 1680.6, "y": 1747.1, "e": 3152, "g": "Sella", "b": "The highest point of the Sella massif, reached easily from the Sass Pordoi cable car at Passo Pordoi.", "p": "passo-pordoi-dusk"}, {"n": "Sass Rigais", "x": 1561.2, "y": 1310.8, "e": 3025, "g": "Odle · Puez", "b": "Highest of the Odle spires above Val di Funes and Val Gardena.", "p": null}, {"n": "Tre Cime di Lavaredo", "x": 3072.9, "y": 1285.3, "e": 2999, "g": "Sesto Dolomites", "b": "The three most famous towers in the Dolomites, circled by an easy loop from Rifugio Auronzo.", "p": "tre-cime-aerial-dusk"}, {"n": "Catinaccio · Rosengarten", "x": 1127.2, "y": 1979.8, "e": 2981, "g": "Catinaccio", "b": "The ‘rose garden’ that glows red at sunset above Bolzano and Val di Fassa.", "p": null}, {"n": "Latemar", "x": 978.7, "y": 2330.4, "e": 2842, "g": "Latemar", "b": "A crown of spires mirrored in Lago di Carezza, with the Obereggen ski area on its flanks.", "p": "carezza-lake-latemar"}, {"n": "Cinque Torri", "x": 2333.1, "y": 1717.5, "e": 2361, "g": "Cortina", "b": "Five rock towers above Cortina, an open-air WWI museum in summer and a ski area in winter.", "p": "cinque-torri-winter"}, {"n": "Averau", "x": 2286.5, "y": 1785.2, "e": 2649, "g": "Nuvolau", "b": "A blocky summit above the Cinque Torri with a short via ferrata and huge views from Rifugio Averau.", "p": "averau-portrait"}, {"n": "Seceda", "x": 1369.0, "y": 1353.2, "e": 2519, "g": "Odle · Puez", "b": "A knife-edge ridge above Ortisei, reached by cable car, with one of the most photographed views in the Alps.", "p": "seceda-aerial"}, {"n": "Cadini di Misurina", "x": 2927.3, "y": 1378.6, "e": 2839, "g": "Cadini", "b": "A forest of jagged spires above Lake Misurina, seen at its best from the Cadini viewpoint path.", "p": "cadini-hero"}, {"n": "Sciliar · Schlern", "x": 1034.0, "y": 1759.8, "e": 2563, "g": "Sciliar", "b": "The flat-topped symbol of South Tyrol, rising above Alpe di Siusi and Castelrotto.", "p": "siusi-gentle-slope"}, {"n": "Kronplatz", "x": 2053.5, "y": 771.7, "e": 2275, "g": "Kronplatz", "b": "A rounded summit above Brunico, ringed by lifts in winter and topped by the Messner Mountain Museum Corones.", "p": null}], TOWNS=[{"n": "Bolzano", "x": 305.8, "y": 1793.7}, {"n": "Bressanone", "x": 1182.6, "y": 869.4}, {"n": "Brunico", "x": 1998.1, "y": 529.3}, {"n": "Cortina d’Ampezzo", "x": 2580.7, "y": 1615.9}, {"n": "Belluno", "x": 2816.6, "y": 3303.5}, {"n": "Ortisei", "x": 1229.2, "y": 1471.9}, {"n": "Selva", "x": 1485.5, "y": 1548.1}, {"n": "Corvara", "x": 1826.3, "y": 1569.3}, {"n": "Canazei", "x": 1517.5, "y": 1882.5}, {"n": "Arabba", "x": 1820.4, "y": 1789.4}, {"n": "Moena", "x": 1191.3, "y": 2309.3}, {"n": "San Martino", "x": 1602.0, "y": 2794.3}, {"n": "Dobbiaco", "x": 2825.3, "y": 797.2}, {"n": "Alleghe", "x": 2248.6, "y": 2195.3}, {"n": "Castelrotto", "x": 902.9, "y": 1501.5}];
+  var map=L.map('imap',{crs:L.CRS.Simple,minZoom:-3,maxZoom:1.5,zoomSnap:0.25,attributionControl:false,maxBoundsViscosity:0.9});
+  var b=[[-H,0],[0,W]];
+  var small=window.matchMedia('(max-width:760px)').matches;
+  L.imageOverlay(small?'/assets/img/relief-dolomites-2048.jpg':'/assets/img/relief-dolomites-4096.jpg',b).addTo(map);
+  map.setMaxBounds([[-H-200,-200],[200,W+200]]);
+  map.fitBounds([[-2350,900],[-650,3700]]);
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var tri='<svg width="22" height="22" viewBox="0 0 22 22"><path d="M2 19 L11 3 L20 19 Z" fill="#c8202f" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>';
+  TOWNS.forEach(function(t){
+    L.circleMarker([-t.y,t.x],{radius:4.5,color:'#16191c',weight:2,fillColor:'#fff',fillOpacity:1,interactive:false}).addTo(map)
+     .bindTooltip(esc(t.n),{permanent:true,direction:'right',offset:[6,0],className:'tw-lbl'});
+  });
+  PEAKS.forEach(function(p){
+    var ph=p.p?'<div class="ph" style="background-image:url(/assets/img/'+p.p+'-800.jpg)"><span>'+esc(p.g)+'</span></div>':'<div class="ph none"><span>'+esc(p.g)+'</span></div>';
+    var card='<div class="pcard">'+ph+'<div class="bd"><h3>'+esc(p.n)+'</h3><div class="el">'+p.e.toLocaleString('en')+' m</div><p>'+esc(p.b)+'</p></div></div>';
+    var m=L.marker([-p.y,p.x],{icon:L.divIcon({className:'pk-icon',html:tri,iconSize:[22,22],iconAnchor:[11,17]}),title:p.n+', '+p.e+' m',keyboard:true}).addTo(map);
+    var lbl=L.tooltip({permanent:true,direction:'bottom',offset:[0,4],className:'pk-lbl'}).setContent(esc(p.n));
+    m.bindTooltip(lbl);
+    var cardTip=L.tooltip({direction:'top',offset:[0,-18],className:'card-tt',opacity:1}).setContent(card);
+    m.on('mouseover focus',function(){m.unbindTooltip();m.bindTooltip(cardTip).openTooltip();});
+    m.on('mouseout blur',function(){m.closeTooltip();m.unbindTooltip();m.bindTooltip(lbl).openTooltip();});
+    m.on('click',function(){if(m.getTooltip()===cardTip){m.fire('mouseout')}else{m.fire('mouseover')}});
+  });
+  L.control.attribution({prefix:false}).addAttribution('Relief: Mapzen / AWS Terrain Tiles').addTo(map);
+})();
+</script>
+<script src="/assets/js/main.js?v=3" defer></script>
+</body>
+</html>
